@@ -9,4 +9,7 @@ docker rmi $(docker images -f "dangling=true" -q)
 Docker python library is required. See installation instructions [here](https://github.com/docker/docker-py)
 
 ## Usage
-./dockerupdate.py
+
+```bash
+python dockerupdate.py
+```
