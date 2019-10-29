@@ -10,18 +10,11 @@ info = client.info()
 images = client.images.list()
 
 for image in images:
-    for a in image.attrs.items():
-        repostr = ""
-        if isinstance(a[1], dict) or isinstance(a[1], list):
-            for sub in a[1]:
-                if a[0] == "RepoTags":
-                    repostr = sub
-                pass
-            pass
-        else:
-            pass
+    repostr = image.attrs.get("RepoTags")
+    if isinstance(repostr, list) and len(repostr) > 0:
+        repostr = repostr[0]
         if repostr != "":
-            print ("docker pull " + repostr)
+            print("docker pull " + repostr)
             child = subprocess.Popen(["docker", "pull", repostr])
-            child.wait()
             pass
+        pass
